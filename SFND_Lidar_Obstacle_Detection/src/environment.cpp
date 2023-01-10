@@ -103,6 +103,11 @@ void simpleHighway(pcl::visualization::PCLVisualizer::Ptr& viewer)
         renderBox(viewer, box, clusterId);
         clusterId++;
     }
+
+    while (!viewer->wasStopped ())
+    {
+        viewer->spinOnce ();
+    }
   
 }
 
@@ -135,10 +140,18 @@ int main (int argc, char** argv)
 {
     std::cout << "starting enviroment" << std::endl;
 
+
+    // Make Visualizer
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
+
+    // Warning OFF
     viewer->getRenderWindow()->GlobalWarningDisplayOff();
+
+    // Set Camera Angles {XY, TopDown, Side, FPS}
     CameraAngle setAngle = XY;
+
     initCamera(setAngle, viewer);
+
     //simpleHighway(viewer);
 
     ProcessPointClouds<pcl::PointXYZI>* pointProcessor = new ProcessPointClouds<pcl::PointXYZI>();
