@@ -105,7 +105,7 @@ struct Lidar
 		// TODO:: set sderr to 0.2 to get more interesting pcd files
 		// TODO:: increase number of layers to 8 to get higher resolution pcd
 		// TODO:: set to pi/64 to get higher resolution pcd
-        setParam(5, 50, 0.2, 0.2, 0, 4, pi/64);
+        setParam(5, 50, 0.2, 0.1, 0, 4, pi/64);
 		// the steepest vertical angle
 		double steepestAngle =  30.0*(-pi/180);
 		double angleRange = 26.0*(pi/180);

@@ -45,6 +45,8 @@ public:
         }
 	}
 
+    void insert_cloud(
+
 	// return a list of point ids in the tree that are within distance of target
 	std::vector<int> search(std::vector<float> target, float distanceTol)
 	{

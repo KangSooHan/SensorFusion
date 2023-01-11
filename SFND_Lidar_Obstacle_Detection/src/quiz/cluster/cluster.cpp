@@ -80,7 +80,7 @@ void Proximity(int idx, const std::vector<std::vector<float>> &points, std::vect
     processed[idx] = true;
     cluster.push_back(idx);
 
-    std::vector<int> nearest = tree.search(points[idx], distanceTol);
+    std::vector<int> nearest = tree.search(cloud->points[idx], distanceTol);
 
     for(int id: nearest)
         std::cout << id << "->";

@@ -2,7 +2,6 @@
 // Quiz on implementing simple RANSAC line fitting
 
 #include "../../render/render.h"
-#include <unordered_set>
 #include "../../processPointClouds.h"
 // using templates for processPointClouds so also include .cpp to help linker
 #include "../../processPointClouds.cpp"
@@ -71,7 +70,7 @@ pcl::visualization::PCLVisualizer::Ptr initScene()
   	return viewer;
 }
 
-std::pair<float, std::pair<float, float>> CrossProduct(std::pair<float, std::pair<float, float>> v1, std::pair<float, std::pair<float, float>> v2)
+std::pair<float, std::pair<float, float>> crossProduct(std::pair<float, std::pair<float, float>> v1, std::pair<float, std::pair<float, float>> v2)
 {
     return {v1.second.first * v2.second.second - v1.second.second*v2.second.first,{
                                                 v1.second.second*v2.first - v1.first*v2.second.second,
@@ -104,7 +103,7 @@ std::unordered_set<int> Ransac3D(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, int 
         std::pair<float, std::pair<float, float>> vec1, vec2, normal;
         vec1 = {point2.x - point1.x, {point2.y-point1.y, point2.z-point1.z}};
         vec2 = {point3.x - point1.x, {point3.y-point1.y, point3.z-point1.z}};
-        normal = CrossProduct(vec1, vec2);
+        normal = crossProduct(vec1, vec2);
 
         float A, B, C, D;
         A =  normal.first, B = normal.second.first, C = normal.second.second;
